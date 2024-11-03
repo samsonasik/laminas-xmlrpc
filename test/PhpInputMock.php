@@ -38,7 +38,7 @@ class PhpInputMock
     public static function mockInput($data)
     {
         stream_wrapper_unregister('php');
-        stream_wrapper_register('php', 'LaminasTest\XmlRpc\PhpInputMock');
+        stream_wrapper_register('php', \LaminasTest\XmlRpc\PhpInputMock::class);
         static::$data = $data;
     }
 

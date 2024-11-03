@@ -12,7 +12,6 @@ use PHPUnit\Framework\TestCase;
 use SimpleXMLElement;
 use stdClass;
 
-use function dirname;
 use function file_get_contents;
 use function is_string;
 use function realpath;
@@ -250,8 +249,8 @@ EOD;
      */
     public function testDoesNotAllowExternalEntities(): void
     {
-        $payload = file_get_contents(dirname(__FILE__) . '/_files/Laminas12293-response.xml');
-        $payload = sprintf($payload, 'file://' . realpath(dirname(__FILE__) . '/_files/Laminas12293-payload.txt'));
+        $payload = file_get_contents(__DIR__ . '/_files/Laminas12293-response.xml');
+        $payload = sprintf($payload, 'file://' . realpath(__DIR__ . '/_files/Laminas12293-payload.txt'));
         $this->response->loadXml($payload);
         $value = $this->response->getReturnValue();
         $this->assertEmpty($value);
@@ -262,8 +261,8 @@ EOD;
 
     public function testShouldDisallowsDoctypeInRequestXmlAndReturnFalseOnLoading(): void
     {
-        $payload = file_get_contents(dirname(__FILE__) . '/_files/Laminas12293-response.xml');
-        $payload = sprintf($payload, 'file://' . realpath(dirname(__FILE__) . '/_files/Laminas12293-payload.txt'));
+        $payload = file_get_contents(__DIR__ . '/_files/Laminas12293-response.xml');
+        $payload = sprintf($payload, 'file://' . realpath(__DIR__ . '/_files/Laminas12293-payload.txt'));
         $this->assertFalse($this->response->loadXml($payload));
     }
 }

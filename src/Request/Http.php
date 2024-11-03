@@ -8,6 +8,7 @@ use Laminas\XmlRpc\Request as XmlRpcRequest;
 
 use function file_get_contents;
 use function str_replace;
+use function str_starts_with;
 use function strtolower;
 use function substr;
 use function ucwords;
@@ -79,7 +80,7 @@ class Http extends XmlRpcRequest
         if (null === $this->headers) {
             $this->headers = [];
             foreach ($_SERVER as $key => $value) {
-                if ('HTTP_' === substr($key, 0, 5)) {
+                if (str_starts_with($key, 'HTTP_')) {
                     $header                 = str_replace(
                         ' ',
                         '-',

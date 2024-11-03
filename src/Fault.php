@@ -5,6 +5,7 @@ namespace Laminas\XmlRpc;
 use Laminas\Xml\Exception\RuntimeException;
 use Laminas\Xml\Security as XmlSecurity;
 use SimpleXMLElement;
+use Stringable;
 
 use function array_reduce;
 use function is_string;
@@ -21,7 +22,7 @@ use function libxml_use_internal_errors;
  * To allow method chaining, you may only use the {@link getInstance()} factory
  * to instantiate a Laminas\XmlRpc\Server\Fault.
  */
-class Fault
+class Fault implements Stringable
 {
     /**
      * Fault code
@@ -259,7 +260,7 @@ class Fault
         $fault = new static();
         try {
             $isFault = $fault->loadXml($xml);
-        } catch (Exception\ExceptionInterface $e) {
+        } catch (Exception\ExceptionInterface) {
             $isFault = false;
         }
 

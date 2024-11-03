@@ -8,14 +8,18 @@ use Laminas\XmlRpc\Request;
 use LaminasTest\XmlRpc\PhpInputMock;
 use PHPUnit\Framework\TestCase;
 
+use function str_starts_with;
 use function strlen;
-use function substr;
 
 /**
  * @group      Laminas_XmlRpc
  */
 class HttpTest extends TestCase
 {
+    private string $xml;
+    private Request\Http $request;
+    private array $server;
+
     /**
      * Setup environment
      */
@@ -57,7 +61,7 @@ EOX;
 
         $this->server = $_SERVER;
         foreach ($_SERVER as $key => $value) {
-            if ('HTTP_' === substr($key, 0, 5)) {
+            if (str_starts_with($key, 'HTTP_')) {
                 unset($_SERVER[$key]);
             }
         }

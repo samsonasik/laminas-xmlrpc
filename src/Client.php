@@ -20,7 +20,7 @@ use function in_array;
 use function ini_set;
 use function is_array;
 use function is_string;
-use function substr;
+use function str_starts_with;
 use function trim;
 
 use const PHP_VERSION_ID;
@@ -276,13 +276,13 @@ class Client implements ServerClient
      */
     public function call($method, $params = [])
     {
-        if (! $this->skipSystemLookup() && ('system.' !== substr($method, 0, 7))) {
+        if (! $this->skipSystemLookup() && (! str_starts_with($method, 'system.'))) {
             // Ensure empty array/struct params are cast correctly
             // If system.* methods are not available, bypass. (Laminas-2978)
             $success = true;
             try {
                 $signatures = $this->getIntrospector()->getMethodSignature($method);
-            } catch (ExceptionInterface $e) {
+            } catch (ExceptionInterface) {
                 $success = false;
             }
             if ($success) {

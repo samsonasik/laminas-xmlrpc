@@ -16,10 +16,10 @@ use Laminas\XmlRpc\Fault;
 use Laminas\XmlRpc\Request;
 use Laminas\XmlRpc\Response;
 use Laminas\XmlRpc\Value;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 use function count;
-use function dirname;
 use function file_get_contents;
 use function implode;
 use function strlen;
@@ -38,6 +38,8 @@ class ClientTest extends TestCase
 
     /** @var Client */
     protected $xmlrpcClient;
+
+    private MockObject $mockedIntrospector;
 
     protected function setUp(): void
     {
@@ -697,7 +699,7 @@ class ClientTest extends TestCase
         $this->httpAdapter = new Adapter\Test();
         $this->httpClient  = new HttpClient(null, ['adapter' => $this->httpAdapter]);
 
-        $respBody = file_get_contents(dirname(__FILE__) . "/_files/Laminas1897-response-chunked.txt");
+        $respBody = file_get_contents(__DIR__ . "/_files/Laminas1897-response-chunked.txt");
         $this->httpAdapter->setResponse($respBody);
 
         $this->xmlrpcClient = new Client($baseUri);
