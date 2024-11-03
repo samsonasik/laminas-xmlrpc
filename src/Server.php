@@ -25,7 +25,7 @@ use function is_object;
 use function is_string;
 use function is_subclass_of;
 use function method_exists;
-use function substr;
+use function str_starts_with;
 
 /**
  * An XML-RPC server implementation
@@ -371,7 +371,7 @@ class Server extends AbstractServer
         }
 
         foreach ($definition as $key => $method) {
-            if ('system.' === substr($key, 0, 7)) {
+            if (str_starts_with($key, 'system.')) {
                 continue;
             }
             $this->table->addMethod($method, $key);
@@ -543,10 +543,7 @@ class Server extends AbstractServer
      */
     protected function _fixType($type)
     {
-        if (isset($this->typeMap[$type])) {
-            return $this->typeMap[$type];
-        }
-        return 'void';
+        return $this->typeMap[$type] ?? 'void';
     }
     // @codingStandardsIgnoreEnd
 

@@ -73,7 +73,7 @@ class GeneratorTest extends TestCase
         $variant2 = '<element>&lt;&gt;&amp;&quot;\'€</element>';
         try {
             $this->assertXml($variant1, $generator);
-        } catch (ExpectationFailedException $e) {
+        } catch (ExpectationFailedException) {
             $this->assertXml($variant2, $generator);
         }
     }

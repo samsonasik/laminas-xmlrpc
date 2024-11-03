@@ -7,6 +7,7 @@ use Exception;
 use Laminas\Stdlib\ErrorHandler;
 use Laminas\XmlRpc\Exception\ValueException;
 use SimpleXMLElement;
+use Stringable;
 
 use function assert;
 use function count;
@@ -31,7 +32,7 @@ use const XML_DOCUMENT_TYPE_NODE;
  * generated and stored in {@link $fault}; developers may check for it using
  * {@link isFault()} and {@link getFault()}.
  */
-class Request
+class Request implements Stringable
 {
     /**
      * Request character encoding
@@ -317,7 +318,7 @@ class Request
             $xml   = simplexml_import_dom($dom);
             $error = ErrorHandler::stop();
             libxml_use_internal_errors($xmlErrorsFlag);
-        } catch (Exception $e) {
+        } catch (Exception) {
             // Not valid XML
             $this->fault = new Fault(631);
             $this->fault->setEncoding($this->getEncoding());
@@ -359,7 +360,7 @@ class Request
                     $param   = AbstractValue::getXmlRpcValue($param->value, AbstractValue::XML_STRING);
                     $types[] = $param->getType();
                     $argv[]  = $param->getValue();
-                } catch (Exception $e) {
+                } catch (Exception) {
                     $this->fault = new Fault(636);
                     $this->fault->setEncoding($this->getEncoding());
                     return false;

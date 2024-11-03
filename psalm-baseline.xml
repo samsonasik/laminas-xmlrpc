@@ -323,9 +323,6 @@
     <MixedOperand>
       <code><![CDATA[$value]]></code>
     </MixedOperand>
-    <PossiblyUnusedMethod>
-      <code><![CDATA[getFullRequest]]></code>
-    </PossiblyUnusedMethod>
     <PropertyNotSetInConstructor>
       <code><![CDATA[$headers]]></code>
       <code><![CDATA[$xml]]></code>
@@ -430,7 +427,8 @@
       <code><![CDATA[new $request()]]></code>
     </MixedMethodCall>
     <MixedReturnStatement>
-      <code><![CDATA[$this->typeMap[$type]]]></code>
+      <code><![CDATA[$this->typeMap[$type] ?? 'void']]></code>
+      <code><![CDATA[$this->typeMap[$type] ?? 'void']]></code>
     </MixedReturnStatement>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$class]]></code>
@@ -694,9 +692,6 @@
       <code><![CDATA[setServerResponseTo]]></code>
     </MissingReturnType>
     <MixedMethodCall>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[expects]]></code>
       <code><![CDATA[getValue]]></code>
       <code><![CDATA[getValue]]></code>
       <code><![CDATA[getValue]]></code>
@@ -705,15 +700,6 @@
       <code><![CDATA[getValue]]></code>
       <code><![CDATA[getValue]]></code>
       <code><![CDATA[getValue]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[with]]></code>
-      <code><![CDATA[with]]></code>
-      <code><![CDATA[with]]></code>
     </MixedMethodCall>
     <UndefinedInterfaceMethod>
       <code><![CDATA[addResponse]]></code>
@@ -732,9 +718,6 @@
       <code><![CDATA[setResponse]]></code>
       <code><![CDATA[setResponse]]></code>
     </UndefinedInterfaceMethod>
-    <UndefinedThisPropertyAssignment>
-      <code><![CDATA[$this->mockedIntrospector]]></code>
-    </UndefinedThisPropertyAssignment>
     <UnusedVariable>
       <code><![CDATA[$signature]]></code>
       <code><![CDATA[$time]]></code>
@@ -887,32 +870,9 @@
     <MixedAssignment>
       <code><![CDATA[[$path, $mode]]]></code>
     </MixedAssignment>
-    <MixedMethodCall>
-      <code><![CDATA[getFullRequest]]></code>
-      <code><![CDATA[getHeaders]]></code>
-      <code><![CDATA[getRawRequest]]></code>
-    </MixedMethodCall>
-    <MixedOperand>
-      <code><![CDATA[$this->xml]]></code>
-    </MixedOperand>
     <PossiblyNullReference>
       <code><![CDATA[getCode]]></code>
     </PossiblyNullReference>
-    <UndefinedThisPropertyAssignment>
-      <code><![CDATA[$this->request]]></code>
-      <code><![CDATA[$this->server]]></code>
-      <code><![CDATA[$this->xml]]></code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch>
-      <code><![CDATA[$this->request]]></code>
-      <code><![CDATA[$this->request]]></code>
-      <code><![CDATA[$this->request]]></code>
-      <code><![CDATA[$this->request]]></code>
-      <code><![CDATA[$this->server]]></code>
-      <code><![CDATA[$this->xml]]></code>
-      <code><![CDATA[$this->xml]]></code>
-      <code><![CDATA[$this->xml]]></code>
-    </UndefinedThisPropertyFetch>
     <UnusedForeachValue>
       <code><![CDATA[$value]]></code>
     </UnusedForeachValue>

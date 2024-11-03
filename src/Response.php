@@ -4,6 +4,7 @@ namespace Laminas\XmlRpc;
 
 use Laminas\Xml\Exception\RuntimeException;
 use Laminas\Xml\Security as XmlSecurity;
+use Stringable;
 
 use function is_object;
 use function is_string;
@@ -13,7 +14,7 @@ use function is_string;
  *
  * Container for accessing an XMLRPC return value and creating the XML response.
  */
-class Response
+class Response implements Stringable
 {
     /**
      * Return value
@@ -188,7 +189,7 @@ class Response
             }
             $valueXml = $xml->params->param->value->asXML();
             $value    = AbstractValue::getXmlRpcValue($valueXml, AbstractValue::XML_STRING, $libXmlOptions);
-        } catch (Exception\ValueException $e) {
+        } catch (Exception\ValueException) {
             $this->fault = new Fault(653);
             $this->fault->setEncoding($this->getEncoding());
             return false;

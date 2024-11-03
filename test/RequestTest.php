@@ -14,7 +14,6 @@ use SimpleXMLElement;
 use stdClass;
 
 use function count;
-use function dirname;
 use function file_get_contents;
 use function is_string;
 use function realpath;
@@ -331,8 +330,8 @@ class RequestTest extends TestCase
      */
     public function testDoesNotAllowExternalEntities(): void
     {
-        $payload = file_get_contents(dirname(__FILE__) . '/_files/Laminas12293-request.xml');
-        $payload = sprintf($payload, 'file://' . realpath(dirname(__FILE__) . '/_files/Laminas12293-payload.txt'));
+        $payload = file_get_contents(__DIR__ . '/_files/Laminas12293-request.xml');
+        $payload = sprintf($payload, 'file://' . realpath(__DIR__ . '/_files/Laminas12293-payload.txt'));
         $this->request->loadXml($payload);
         $method = $this->request->getMethod();
         $this->assertEmpty($method);
@@ -343,8 +342,8 @@ class RequestTest extends TestCase
 
     public function testShouldDisallowsDoctypeInRequestXmlAndReturnFalseOnLoading(): void
     {
-        $payload = file_get_contents(dirname(__FILE__) . '/_files/Laminas12293-request.xml');
-        $payload = sprintf($payload, 'file://' . realpath(dirname(__FILE__) . '/_files/Laminas12293-payload.txt'));
+        $payload = file_get_contents(__DIR__ . '/_files/Laminas12293-request.xml');
+        $payload = sprintf($payload, 'file://' . realpath(__DIR__ . '/_files/Laminas12293-payload.txt'));
         $this->assertFalse($this->request->loadXml($payload));
     }
 }

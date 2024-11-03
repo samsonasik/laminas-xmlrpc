@@ -13,7 +13,7 @@ use function is_array;
  */
 class ServerIntrospection
 {
-    private ServerProxy $system;
+    private readonly ServerProxy $system;
 
     public function __construct(XMLRPCClient $client)
     {
@@ -33,7 +33,7 @@ class ServerIntrospection
 
         try {
             $signatures = $this->getSignatureForEachMethodByMulticall($methods);
-        } catch (Exception\FaultException $e) {
+        } catch (Exception\FaultException) {
             // degrade to looping
         }
 
